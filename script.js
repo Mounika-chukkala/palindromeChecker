@@ -1,5 +1,7 @@
 const main=document.querySelector(".main");
-const button=document.querySelector("button")
+const button=document.querySelector("button");
+const input=document.getElementById("text-element");
+const answer=document.querySelector("#answer");
 
 function isPalindrome(str) {
     // Remove non-alphanumeric characters and convert to lowercase
@@ -16,7 +18,9 @@ const buttonEvent=()=>{
     }
     const palVal=isPalindrome(value);
     main.style.height=`200px`;
-    main.style.fontSize=`20px`;
+    answer.style.height=`50px`;
+    answer.style.fontSize=`20px`;
+
     let outputHTML=``;
     if (palVal){
     outputHTML+=`
@@ -28,11 +32,20 @@ const buttonEvent=()=>{
         <p ><b>${value}</b> is not a Palindrome.
         `;
     }
-    main.innerHTML+=outputHTML;
+    answer.innerHTML+=outputHTML;
 }
 
-
-
+const resize=()=>{
+    main.style.height=`150px`;
+    answer.innerHTML="";
+    answer.style.height=`0px`;
+}
+const Eventcall=(event)=>{
+    if(event.key==="Enter"){
+        buttonEvent();
+    }
+}
 button.addEventListener("click",buttonEvent);
-
+input.addEventListener("click",resize);
+button.addEventListener("keydown",Eventcall);
 
